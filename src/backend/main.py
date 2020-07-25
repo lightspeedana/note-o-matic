@@ -25,8 +25,13 @@ unique = set(cleaned)
 # text.generate_wordcloud(' '.join(cleaned), stopwords)
 
 model, db = models.word2vec_model(unique, min_count=1, window=5, verbose=True)
+labels = db.labels_
+vectors = model.wv.vectors
+
+d = {vectors[i]:labels[i] for i in range(len(labels))}
 
 print('-'*40)
-print(db.labels_.shape, len(unique))
+print(g)
+
 
 
