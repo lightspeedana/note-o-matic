@@ -1,0 +1,6 @@
+requests
+nltk
+numpy
+matplotlib
+beautifulsoup4
+wordcloud
