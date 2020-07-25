@@ -1,24 +1,24 @@
 import re
 
 import matplotlib.pyplot as plt
+import nltk
+import nltk.stem.wordnet as wordnet
+import wordcloud as wc
+import math
 
-from nltk import word_tokenize
-from nltk.stem.wordnet import WordNetLemmatizer
-from wordcloud import WordCloud
-from typing import List, Dict
 from collections import Counter
-from math import log
+from typing import List, Dict
 
 
 def clean_text(text: str, stopwords: List[str]) -> List[str]:
     text = re.sub(r"[\"\(\)]", " ", text).lower()
     text = re.sub(r"[\-\_]", "", text)
-    lem = WordNetLemmatizer()
+    lem = wordnet.WordNetLemmatizer()
     if not isinstance(stopwords, set):
         stopwords = set(stopwords)
     return [
         lem.lemmatize(w)
-        for w in word_tokenize(text)
+        for w in nltk.word_tokenize(text)
         if (w not in stopwords and not re.match(r"^.*\W.*$", w))
     ]
 
@@ -30,7 +30,7 @@ def calculate_tfidf(text: List[str], ndocs: int = 1) -> Dict[str, float]:
     tfidf = {k: v / length for k, v in count.items()}
     # Calculate idf
     for k, v in tfidf.items():
-        idf = log(ndocs / count[k])
+        idf = math.log(ndocs / count[k])
         tfidf[k] *= idf
     return tfidf
 
@@ -50,7 +50,7 @@ def generate_wordcloud(text: str, stopwords: List[str]) -> None:
 
         return "hsl({}, {}%, {}%)".format(h, s, l)
 
-    wordcloud = WordCloud(
+    wordcloud = wc.WordCloud(
         background_color="white",
         stopwords=stopwords,
         max_words=100,
