@@ -12,13 +12,14 @@
 	</header>
 	<div class='content'>
 		{% block content %}{% endblock %}
-		<textarea id="textbox" rows="60" cols="60">
+		<textarea id="textbox" rows="30" cols="30">
 		</textarea>
+		<button class='submit'>Submit!</button>
 	</div>
 	<div class='footer'>
 	</div>
 	<script>
-		document.getElementById("textbox").value = '';
+		document.getElementById("textbox").value = 'Add your notes here, and click the button below the textbox to start analysis.';
 	</script>
 </section>
 
