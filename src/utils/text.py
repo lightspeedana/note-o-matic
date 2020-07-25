@@ -14,6 +14,8 @@ def clean_text(text: str, stopwords: List[str]) -> List[str]:
     text = re.sub(r"[\"\(\)]", ' ', text).lower()
     text = re.sub(r"[\-\_]", '', text) 
     lem  = WordNetLemmatizer()
+    if not isinstance(stopwords, set):
+        stopwords = set(stopwords)
     return [lem.lemmatize(w) for w in word_tokenize(text) if (w not in stopwords and not re.match(r"^.*\W.*$", w))]
 
 def calculate_tfidf(text: List[str], ndocs: int=1) -> Dict[str, float]:
@@ -47,3 +49,8 @@ def generate_wordcloud(text: str, stopwords: List[str]) -> None:
     plt.axis('off')
     # plt.show()
     plt.savefig('wordcloud.png', bbox_inches='tight')
+
+def most_common_ngrams(text, n):
+    ngrams = list(nltk.ngrams(text, n))
+    counts = Counter(ngrams)
+    return sorted(set(ngrams), key=counts.get, reverse=True)
