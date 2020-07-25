@@ -37,8 +37,16 @@ button:hover{
 }
 
 .content {
-	background: red;
 	height: 50vh; 
+}
+
+#textbox { 
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	text-align: top;
+	width:100%;
+	height: 400px;
 }
 
 img.logo {
