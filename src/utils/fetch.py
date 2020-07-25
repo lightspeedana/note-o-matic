@@ -12,7 +12,8 @@ def parse_webpage(url: str) -> Union[str, str]:
     """
     r = requests.get(url)
     if r.status_code != 200:
+        return None
     soup = BeautifulSoup(r.content, 'html.parser')
-    paragraphs = [x.get_text() for x in soup.find_all('p')]
+    paragraphs = (x.get_text() for x in soup.find_all('p'))
     title = soup.find('h1').get_text()
     return title, ' '.join(paragraphs)
