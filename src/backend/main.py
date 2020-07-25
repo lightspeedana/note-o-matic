@@ -24,5 +24,9 @@ unique = set(cleaned)
 
 # text.generate_wordcloud(' '.join(cleaned), stopwords)
 
-models.word2vec_model(unique, min_count=1, window=5, verbose=True)
+model, db = models.word2vec_model(unique, min_count=1, window=5, verbose=True)
+
+print('-'*40)
+print(db.labels_.shape, len(unique))
+
 

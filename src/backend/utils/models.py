@@ -23,5 +23,6 @@ def word2vec_model(unique_text: set, min_count: int=1, window: int=5, n_neighbor
     n_noise = list(db.labels_).count(-1)
     if verbose:
         print(f"Clusters: {n_clusters} | Noise: {n_noise}")
-
+    
+    return model, db
 
