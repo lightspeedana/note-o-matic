@@ -28,16 +28,17 @@ model = gensim.models.Word2Vec([unique], min_count=1, size=len(unique), window=5
 neighbors = NearestNeighbors(n_neighbors=2)
 nbrs = neighbors.fit(model.wv.vectors)
 t = time.time()
-distances, indices = nbrs.kneighbors(model.wv.vectors)
-distances = distances[:,1]
-distances = np.sort(distances, axis=0)
+distances, _ = nbrs.kneighbors(model.wv.vectors)
+distances = np.sort(distances[:,1], axis=0)
+epsilon = np.average(distances[:len(distances)//2])
 
-grads = np.gradient(distances)
-#grads = np.sort(grads, axis=0)
-print(f"Time taken to fit : {time.time() - t}")
-print(grads)
-plt.plot(distances, label="Distances")
-plt.figure()
-plt.plot(grads, label="grads")
-plt.show()
+t = time.time()
+clustering = DBSCAN(eps=epsilon, min_samples=5).fit(model.wv.vectors)
+print(f"Time taken to DBSCAN : {time.time() - t}")
+
+n_clusters_ = len(set(clustering.labels_)) - (1 if -1 in clustering.labels_ else 0)
+n_noise_ = list(clustering.labels_).count(-1)
+
+print(f"Clusters: {n_clusters_} | Noise: {n_noise_}")
+
 
