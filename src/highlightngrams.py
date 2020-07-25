@@ -7,11 +7,6 @@ from utils.fetch import *
 from utils.text import *
 from collections import Counter
 
-def most_common_ngrams(text, n):
-    ngrams = list(nltk.ngrams(text, n))
-    counts = Counter(ngrams)
-    return sorted(set(ngrams), key=counts.get, reverse=True)
-
 URL = "https://en.wikipedia.org/wiki/United_States"
 
 title, text = parse_webpage(URL)

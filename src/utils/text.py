@@ -24,3 +24,8 @@ def calculate_tfidf(text: List[str], ndocs: int=1) -> Dict[str, float]:
 	    idf = log(ndocs / count[k])
 	    tfidf[k] *= idf
     return tfidf
+
+def most_common_ngrams(text, n):
+    ngrams = list(nltk.ngrams(text, n))
+    counts = Counter(ngrams)
+    return sorted(set(ngrams), key=counts.get, reverse=True)
