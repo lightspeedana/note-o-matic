@@ -15,6 +15,10 @@ def hello():
 def make_notes():
     return request.form
 
+@app.route('/results')
+def results():
+    return render_template('results.html')
+
 @app.errorhandler(500)
 def server_error(e):
     logging.exception('An error occurred during a request.')

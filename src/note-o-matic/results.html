@@ -1,8 +1,7 @@
 <!doctype html>
-<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 <title>{% block title %}{% endblock %} note-o-matic</title>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
-
 <nav>
 	<div class="header">
 		<img class="logo" src="{{ url_for('static', filename='images/final.png') }}">
@@ -14,15 +13,12 @@
 	</header>
 	<div class='content'>
 		{% block content %}{% endblock %}
-		<form action="{{ url_for('make_notes') }}" method="POST" id="textform"> 
-			<textarea type="text" name="analysis" id="textbox" rows="30" cols="30" placeholder="Add your notes here, and click the button below the textbox to start analysis."></textarea>
-			<button type='submit' class='submit'>Submit!</button>
-		</form>
+		<textarea id="textbox" rows="30" cols="30" placeholder="Notes go here"></textarea>
+		<button class='submit'>Submit!</button>
 	</div>
 	<div class='footer'>
 	</div>
 	<script>
-
 	</script>
 </section>
 
