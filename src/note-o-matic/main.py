@@ -1,4 +1,6 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
+from base64 import urlsafe_b64encode, urlsafe_b64decode
+
 import os
 import logging
 
@@ -9,6 +11,9 @@ app = Flask(__name__)
 def hello():
     return render_template('index.html')
 
+@app.route('/notes', methods=['POST'])
+def make_notes():
+    return request.form
 
 @app.errorhandler(500)
 def server_error(e):
