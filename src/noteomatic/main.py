@@ -37,7 +37,7 @@ def make_notes():
     notes = text.create_notes(paragraphs, word_clusters)
     percentage = round(100 * (len(notes) / len(paragraphs)), 3)
     #generate_wordcloud(cleaned, STOPWORDS)
-    return render_template("results.html", percentage=percentage, notes=notes)
+    return render_template("results.html", percentage=percentage, notes=notes.split('\n'))
 
 
 @app.route('/plot.png')

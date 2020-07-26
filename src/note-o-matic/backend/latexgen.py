@@ -47,5 +47,5 @@ if __name__ == '__main__':
     with doc.create(Section('Your notes - reworked.')):
         doc.append('uwu')
 
-    doc.generate_pdf('note-o-maticSummary', clean_tex=False, compiler='/Library/TeX/texbin/pdflatex')
+    doc.generate_tex('note-o-maticSummary')
     tex = doc.dumps()  # The document as string in LaTeX syntax

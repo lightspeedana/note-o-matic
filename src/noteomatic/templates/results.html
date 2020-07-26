@@ -15,7 +15,9 @@
 		{% block content %}{% endblock %}
 		<p>{{ percentage }} % Reduced from original size 100%</p>
 		<p><b>Condensed Notes: </b></p>
-		<p>{{ notes }}</p>
+		{% for para in notes %}
+			<p>{{ para }}</p>
+		{% endfor %}
 	</div>
 	<div class='footer'>
 	</div>
