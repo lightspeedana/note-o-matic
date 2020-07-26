@@ -14,13 +14,23 @@
 	<div class='content'>
 		{% block content %}{% endblock %}
 		{% if image != None %}
-		<img src="data:image/png;base64,{{ image }}"\>
+		
+		<p id='one'><b>Wordcloud generated with frequency analysis</b></p>
+		<img id="wordcloud" src="data:image/png;base64,{{ image }}"\>
 		{% endif %}
-		<p>{{ percentage }} % Reduced from original size 100%</p>
-		<p><b>Condensed Notes: </b></p>
+		<p id='one'>{{ percentage }} % Reduced from original size 100%</p>
+		<p id='one'><b>Condensed Notes - generated with density-based classification and unsupervised learning: </b></p>
 		{% for para in notes %}
-			<p>{{ para }}</p>
+			<p id='one'>{{ para }}</p>
 		{% endfor %}
+		<p id='one'> ------------------------------------- </p>
+		<p id='one'> Debug information for nerds</p>
+		<p id='one'> ------------------------------------- </p>
+		<p id='one'><b>CLUSTERS</b></p>
+		{% for cluster_list in word_clusters %}
+		<p id='one'> {{cluster_list}}</p>
+		{% endfor %}
+
 	</div>
 	<div class='footer'>
 	</div>
