@@ -6,6 +6,8 @@ import nltk
 import nltk.stem.wordnet as wordnet
 import wordcloud as wc
 import math
+import io
+import base64
 
 from collections import Counter
 from typing import List, Dict
@@ -60,9 +62,14 @@ def generate_wordcloud(text: str, stopwords: List[str]) -> None:
         color_func=random_color_func,
         max_font_size=150,
     ).generate(str(text))
-    fig = Figure(1, figsize=(20, 10))
+    fig = plt.figure(figsize=(8, 8))
     plt.imshow(wordcloud)
     plt.axis("off")
+    figfile = io.BytesIO()
+    plt.savefig(figfile, format='png')
+    figfile.seek(0)
+    return base64.b64encode(figfile.getvalue()).decode('utf-8')
+    
     # plt.show()
     # plt.savefig("wordcloud.png", bbox_inches="tight")
 

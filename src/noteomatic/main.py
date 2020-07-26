@@ -35,9 +35,9 @@ def make_notes():
     sent_tok = nltk.sent_tokenize(paragraphs)
     model, db, clusters, word_clusters, n_clusters, n_noise = models.word2vec_model(list(set(cleaned)), min_count=1, window=5, verbose=True)
     notes = text.create_notes(paragraphs, word_clusters)
-    percentage = round(100 * (len(notes) / len(paragraphs)), 3)
-    #generate_wordcloud(cleaned, STOPWORDS)
-    return render_template("results.html", percentage=percentage, notes=notes.split('\n'))
+    percentage = round(100 * (len(notes) / len(paragraphs)), 2)
+    image = text.generate_wordcloud(' '.join(cleaned), STOPWORDS)
+    return render_template("results.html", percentage=percentage, notes=notes.split('\n'), image=image)
 
 
 @app.route('/plot.png')

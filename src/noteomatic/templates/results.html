@@ -13,6 +13,9 @@
 	</header>
 	<div class='content'>
 		{% block content %}{% endblock %}
+		{% if image != None %}
+		<img src="data:image/png;base64,{{ image }}"\>
+		{% endif %}
 		<p>{{ percentage }} % Reduced from original size 100%</p>
 		<p><b>Condensed Notes: </b></p>
 		{% for para in notes %}
