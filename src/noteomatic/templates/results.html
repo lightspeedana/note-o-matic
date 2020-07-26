@@ -1,0 +1,25 @@
+<!doctype html>
+<title>{% block title %}{% endblock %} note-o-matic</title>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+<nav>
+	<div class="header">
+		<img class="logo" src="{{ url_for('static', filename='images/final.png') }}">
+	</div>
+</nav>
+<section class="section-content">
+	<header>
+	  {% block header %}{% endblock %}
+	</header>
+	<div class='content'>
+		{% block content %}{% endblock %}
+		<p>{{ percentage }} % Reduced from original size 100%</p>
+		<p><b>Condensed Notes: </b></p>
+		<p>{{ notes }}</p>
+	</div>
+	<div class='footer'>
+	</div>
+	<script>
+	</script>
+</section>
+

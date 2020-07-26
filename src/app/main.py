@@ -9,7 +9,6 @@ app = Flask(__name__)
 def hello():
     return render_template('index.html')
 
-
 @app.errorhandler(500)
 def server_error(e):
     logging.exception('An error occurred during a request.')
