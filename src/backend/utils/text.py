@@ -66,7 +66,17 @@ def generate_wordcloud(text: str, stopwords: List[str]) -> None:
     plt.savefig("wordcloud.png", bbox_inches="tight")
 
 
-def most_common_ngrams(text, n):
+def most_common_ngrams(text: str, n: int) -> List[list]:
     ngrams = list(nltk.ngrams(text, n))
     counts = Counter(ngrams)
     return sorted(set(ngrams), key=counts.get, reverse=True)
+
+
+def create_notes(paragraphs: str, word_clusters: List[List[str]]) -> str:
+    word_clusters = set().union(*word_clusters)
+    notes = [
+        sent for sent in nltk.sent_tokenize(paragraphs)
+        if any(w in word_clusters for w in sent.split())
+        ]
+    return '\n'.join(notes)
+
