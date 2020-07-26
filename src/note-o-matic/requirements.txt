@@ -1,0 +1,10 @@
+requests
+gensim
+sklearn
+nltk
+numpy
+matplotlib
+beautifulsoup4
+wordcloud
+Flask
+gunicorn==20.0.4

@@ -1,0 +1,25 @@
+<!doctype html>
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+<title>{% block title %}{% endblock %} note-o-matic</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+
+<nav>
+	<div class="header">
+		<img class="logo" src="{{ url_for('static', filename='images/final.png') }}">
+	</div>
+</nav>
+<section class="section-content">
+	<header>
+	  {% block header %}{% endblock %}
+	</header>
+	<div class='content'>
+		{% block content %}{% endblock %}
+		<textarea id="textbox" rows="30" cols="30" placeholder="Add your notes here, and click the button below the textbox to start analysis."></textarea>
+		<button class='submit'>Submit!</button>
+	</div>
+	<div class='footer'>
+	</div>
+	<script>
+	</script>
+</section>
+
