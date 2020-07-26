@@ -5,7 +5,7 @@ import sklearn.neighbors
 
 from typing import List
 
-def word2vec_model(unique_text: set, min_count: int=1, window: int=5, n_neighbors: int=2, min_samples: int=4, verbose: bool=False):
+def word2vec_model(unique_text: set, min_count: int=1, window: int=5, n_neighbors: int=2, min_samples: int=5, verbose: bool=False):
     """
     Returns a word2vec model, a dbscan, clusters, the number of clusters, and the amount of noise
     """
