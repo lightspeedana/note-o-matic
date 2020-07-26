@@ -19,7 +19,7 @@ def clean_text(text: str, stopwords: List[str]) -> List[str]:
     return [
         lem.lemmatize(w)
         for w in nltk.word_tokenize(text)
-        if (w not in stopwords and not re.match(r"^.*\W.*$", w))
+        if (w not in stopwords and not re.match(r"^.*[^a-zA-Z].*$", w))
     ]
 
 
