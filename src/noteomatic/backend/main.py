@@ -7,17 +7,19 @@ import utils.text as text
 import utils.models as models
 import matplotlib.pyplot as plt
 
+import sys
+
 # URL = "https://en.wikipedia.org/wiki/United_States"
 # URL = "https://en.wikipedia.org/wiki/Gerald_B._Greenberg"
 URL = "https://www.bbc.co.uk/news/uk-53522129"
 
-def main(debug: bool=True) -> None:
+def main(url:str, debug: bool=True) -> None:
     """ 
         Usage case
 
         bool debug: print debug info
     """ 
-    title, paragraphs = fetch.parse_webpage(URL)
+    title, paragraphs = fetch.parse_webpage(url)
     stopwords = nltk.corpus.stopwords.words('english')
     cleaned = text.clean_text(paragraphs, stopwords)
     sent_tok = nltk.sent_tokenize(paragraphs)
@@ -37,7 +39,12 @@ def main(debug: bool=True) -> None:
         print('-'*40)
         print(f"{round(100 * (1 - (len(notes) / len(paragraphs))), 3)}% reduction in size from the original")
 
-
 if __name__ == "__main__":
-    main()
+    if len(sys.argv) < 2:
+        print(f"Usage: {sys.argv[0]} <URL> (<URL> ...)")
+        exit()
+        
+    for url in sys.argv[1:]:
+        main(url)
+        print()
 
